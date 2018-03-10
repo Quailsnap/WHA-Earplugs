@@ -20,7 +20,7 @@ WH_EP_EARPLUGS_DEFAULT = false;	// Whether earplugs should be in at 			(false)
 WH_EP_AUTO_VEHICLES = true;		// Will automatically put in plugs				(true)
 								// when entering vehicles if true.
 
-WH_EP_TOGGLEKEY = "timeDec";	//	Key that can be pressed to toggle tags.		("timeDec")
+WH_EP_TOGGLEKEY = "timeDec";	//	Key that can be pressed to toggle plugs.	("timeDec")
 								//	Default is "timeDec", which is normally
 								//	the (-) key. Other keys available here:
 								//	https://community.bistudio.com/wiki/inputAction/actions/bindings
