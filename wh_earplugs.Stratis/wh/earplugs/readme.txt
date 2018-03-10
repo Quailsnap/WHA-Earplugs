@@ -1,6 +1,6 @@
 ==========================================================================================
 
-	WHALE'S EARPLUGS (V0.0.2 Alpha) 
+	WHALE'S EARPLUGS (V0.0.3 Alpha) 
 	SCRIPT FOR ARMA 3
 	
 	( https://github.com/Whalen207/WH-EP )

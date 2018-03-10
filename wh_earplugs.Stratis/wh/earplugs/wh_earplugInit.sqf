@@ -39,7 +39,7 @@ WH_EP_EARPLUGS_MANUAL = false;	// TODO : uhh? this is used for purely keeping tr
 #include "wh_earplugCONFIG.sqf"
 
 //	Allows for player (client) configuration of other settings.
-//#include "include\wh_nametagSettings.sqf"
+//#include "include\wh_earplugSettings.sqf"
 
 //	Emergency exit if the earplug system is disabled.
 if (!WH_EP_EARPLUGS) exitWith {};

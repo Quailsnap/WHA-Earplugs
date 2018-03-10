@@ -21,7 +21,7 @@ WH_EP_EARPLUGS_IN = true;
 
 //	Reduce player sound.
 //	TBD: Change sound depending on user settings.
-2 fadeSound 0.3;
+2 fadeSound WH_EP_SOUNDLEVEL;
 
 //	Update action.
 call wh_ep_fnc_earplugUpdateAction;
