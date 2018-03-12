@@ -71,25 +71,26 @@ wh_ep_fnc_earplugUpdateAction =
 	//	and add the action that allows insertion.
 	if !WH_EP_EARPLUGS_IN then
 	{
-		if (!isNil "WH_EP_ACT_NUM") then
-		{ player removeAction WH_EP_ACT; };
+		if (!isNil "WH_EP_ACT") then { player removeAction WH_EP_ACT; };
 		
-		WH_EP_ACT = player addAction 
-		["<t color='#C67F7F'>Remove Earplugs</t>", 
-		{ WH_EP_EARPLUGS_MANUAL = false; call wh_ep_fnc_earplugRemove; }, [], 0.5];
+		//	Only add the action to put them back in if the system is still enabled.
+		if (WH_EP_EARPLUGS && {WH_EP_EARPLUGS_ACTION}) then
+		{
+			WH_EP_ACT = player addAction 
+			["<t color='#94C67F'>Insert Earplugs</t>", 
+			{ WH_EP_EARPLUGS_MANUAL = true; call wh_ep_fnc_earplugInsert; }, [], 0.5, false];
+		};
 	}
 	//	If they are in, do the opposite.
 	else
 	{
-		if (!isNil "WH_EP_ACT_NUM") then
-		{ player removeAction WH_EP_ACT; };
+		if (!isNil "WH_EP_ACT") then { player removeAction WH_EP_ACT; };
 		
-		//	Only add the action to put them back in if the system is still enabled.
-		if WH_EP_EARPLUGS then
+		if (WH_EP_EARPLUGS_ACTION) then
 		{
 			WH_EP_ACT = player addAction 
-			["<t color='#94C67F'>Insert Earplugs</t>", 
-			{ WH_EP_EARPLUGS_MANUAL = true; call wh_ep_fnc_earplugInsert; }, [], 0.5];
+			["<t color='#C67F7F'>Remove Earplugs</t>", 
+			{ WH_EP_EARPLUGS_MANUAL = false; call wh_ep_fnc_earplugRemove; }, [], 0.5, false];
 		};
 	};
 };

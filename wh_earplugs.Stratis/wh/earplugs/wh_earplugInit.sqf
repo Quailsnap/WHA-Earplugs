@@ -8,8 +8,11 @@
 //====================================================================================
 
 //------------------------------------------------------------------------------------
-//	Initial setup.
+//	Initial setup and function compilation.
 //------------------------------------------------------------------------------------
+
+//	Used so that I don't have to use actual #include command, which can create issues.
+#define SOFT_INCLUDE call compile preprocessFileLineNumbers
 
 //	Make sure this isn't a dedicated server or headless client.
 if (!hasInterface) exitWith {};
@@ -22,27 +25,37 @@ WH_EP_EARPLUGS_MANUAL = false;	// TODO : uhh? this is used for purely keeping tr
 								//			of player actions and is not touched auto
 
 //	Determine which mods are active.
-#include "include\wh_earplugCheckMods.sqf";
+SOFT_INCLUDE "wh\earplugs\include\wh_earplugCheckMods.sqf";
 
 //	Construct & compile action code (earplugUpdateAction) based on presence of ACE.
-#include "include\wh_earplugCompileAction.sqf"
+SOFT_INCLUDE "wh\earplugs\include\wh_earplugCompileAction.sqf";
 
 //	Construct & compile hint system based on presence of ACE.
-#include "include\wh_earplugCompileHint.sqf"
+SOFT_INCLUDE "wh\earplugs\include\wh_earplugCompileHint.sqf";
 
 
 //------------------------------------------------------------------------------------
-//	Configuration and settings import and setup.
+//	Configuration, settings import, and additional setup.
 //------------------------------------------------------------------------------------
 
 //	Allows for missionmaker configuration of important settings.
-#include "wh_earplugCONFIG.sqf"
+SOFT_INCLUDE "wh\earplugs\wh_earplugCONFIG.sqf";
 
-//	Allows for player (client) configuration of other settings.
-//#include "include\wh_earplugSettings.sqf"
+//	Imports settings if CBA is not present,
+//	sets up an options menu if it is.
+SOFT_INCLUDE "wh\earplugs\include\wh_earplugSettings.sqf";
 
 //	Emergency exit if the earplug system is disabled.
 if (!WH_EP_EARPLUGS) exitWith {};
+
+//	Setting up our toggle key (Default '-'), if enabled, and if CBA isn't present.
+SOFT_INCLUDE "wh\earplugs\include\wh_earplugToggleKey.sqf";
+
+//	TODO : TBD - CBA special keybinding.
+
+//	Add basic briefing detailing script features.
+//	If CBA is not present, add a settings menu and import profile settings.
+SOFT_INCLUDE "wh\earplugs\include\wh_earplugBriefing.sqf";
 
 
 //------------------------------------------------------------------------------------
@@ -55,9 +68,6 @@ waitUntil{player == player};
 
 //	Wait for player to get ingame.
 waitUntil {!isNull (findDisplay 46)};
-
-//	Setting up our toggle key (Default '-')
-#include "include\wh_earplugToggleKey.sqf"
 
 //	Reducing volume if player has set that as default.
 if WH_EP_EARPLUGS_DEFAULT then
@@ -72,4 +82,5 @@ call wh_ep_fnc_earplugUpdateHandlers;
 //------------------------------------------------------------------------------------
 
 //	Add earplug self-interact or addaction.
-call wh_ep_fnc_earplugUpdateAction;
+if WH_EP_EARPLUGS_ACTION then
+{	call wh_ep_fnc_earplugUpdateAction;	};
