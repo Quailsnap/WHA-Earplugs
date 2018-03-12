@@ -22,8 +22,16 @@ WH earplugs are enabled in this mission.<br/>Currently they are, by default, %1.
 //	Only add the part mentioning the toggle key if a toggle key exists.
 if WH_EP_TOGGLE then
 { 
-	_briefingString = _briefingString + 
-	format["You can toggle the earplugs in and out with %1.<br/>",WH_EP_TOGGLE_NAME];
+	if !WH_EP_MOD_CBA then
+	{
+		_briefingString = _briefingString + 
+		format["You can toggle the earplugs in and out with %1.<br/>",WH_EP_TOGGLE_NAME];
+	}
+	else
+	{
+		_briefingString = _briefingString + 
+		"You can toggle the earplugs in and out with a keypress set under ESC > OPTIONS > CONTROLS > CONFIGURE ADDONS > WH EARPLUGS.<br/>";
+	};
 };
 
 //	Mention current sound level.
@@ -41,15 +49,19 @@ if WH_EP_AUTO_VEHICLES then
 if WH_EP_MOD_CBA then
 {
 	_briefingString = _briefingString + 
-	"A menu with configurable options for each player is available under ESC > OPTIONS > ADDON OPTIONS.<br/>";
+	"A menu with configurable options for each player is available under ESC > OPTIONS > ADDON OPTIONS > WH EARPLUGS.<br/>";
 }
 //	If it isn't, mention the briefing options menu.
 else
 {
 	_briefingString = _briefingString + 
-	"A menu with configurable options for each player is available beneath this briefing.
-	For additional customization, use the Community Base Addons mod.<br/><br/>";
+	"A menu with configurable options for each player is available beneath this briefing.<br/>
+	For additional customization, use the Community Base Addons mod.<br/>
+	Note: Enabling or disabling the toggle key has no effect until you restart your game, the mission, or rejoin the server.<br/>";
 };
+
+_briefingString = _briefingString +
+"Note: After disabling the addAction / interact action, use it twice to make it disappear from your screen until re-enabled.<br/><br/>";
 
 
 //------------------------------------------------------------------------------------

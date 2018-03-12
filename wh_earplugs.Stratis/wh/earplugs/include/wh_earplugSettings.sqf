@@ -38,11 +38,20 @@ if !WH_EP_MOD_CBA then
 
 else
 {
+	//	Setting for whether plugs can be toggled with a keypress.
+	[
+		"WH_EP_TOGGLE",				// Internal setting name and value set.
+		"CHECKBOX", 				// Setting type.
+		"Earplug Keybind", 			// Name shown in menu.
+		"WH Earplugs", 				// Category shown in menu.
+		WH_EP_TOGGLE 				// Setting type-specific data.
+	] call CBA_Settings_fnc_init;
+
 	//	Setting for whether plugs should be in at mission start / respawns.
 	[
 		"WH_EP_EARPLUGS_DEFAULT",	// Internal setting name and value set.
 		"CHECKBOX", 				// Setting type.
-		"Plugs at Mission Start?", 	// Name shown in menu.
+		"Plugs at Mission Start", 	// Name shown in menu.
 		"WH Earplugs", 				// Category shown in menu.
 		WH_EP_EARPLUGS_DEFAULT, 	// Setting type-specific data.
 		nil, 						// Nil or 0 for changeable, 1 to reset to default, 2 to lock.
@@ -53,7 +62,7 @@ else
 	[
 		"WH_EP_EARPLUGS_ACTION",	// Internal setting name and value set.
 		"CHECKBOX", 				// Setting type.
-		"Show Earplug Action?", 	// Name shown in menu.
+		"Show Earplug Action", 		// Name shown in menu.
 		"WH Earplugs", 				// Category shown in menu.
 		WH_EP_EARPLUGS_ACTION, 		// Setting type-specific data.
 		nil, 						// Nil or 0 for changeable, 1 to reset to default, 2 to lock.
@@ -64,7 +73,7 @@ else
 	[
 		"WH_EP_SOUNDLEVEL",			// Internal setting name and value set.
 		"SLIDER", 					// Setting type.
-		"Sound Level?", 			// Name shown in menu.
+		"Sound Level", 				// Name shown in menu.
 		"WH Earplugs", 				// Category shown in menu.
 		[0.1, 0.9, WH_EP_SOUNDLEVEL, 2]// Setting type-specific data.
 	] call CBA_Settings_fnc_init;
@@ -73,7 +82,7 @@ else
 	[
 		"WH_EP_AUTO_VEHICLES",		// Internal setting name and value set.
 		"CHECKBOX", 				// Setting type.
-		"Vehicle Earplugs?", 		// Name shown in menu.
+		"Vehicle Earplugs", 		// Name shown in menu.
 		"WH Earplugs", 				// Category shown in menu.
 		WH_EP_AUTO_VEHICLES, 		// Setting type-specific data.
 		nil, 						// Nil or 0 for changeable, 1 to reset to default, 2 to lock.

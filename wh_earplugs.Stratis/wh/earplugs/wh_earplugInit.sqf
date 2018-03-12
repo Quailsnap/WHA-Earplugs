@@ -48,7 +48,8 @@ SOFT_INCLUDE "wh\earplugs\include\wh_earplugSettings.sqf";
 //	Emergency exit if the earplug system is disabled.
 if (!WH_EP_EARPLUGS) exitWith {};
 
-//	Setting up our toggle key (Default '-'), if enabled, and if CBA isn't present.
+//	Setting up our toggle key (Default '-').
+//	If CBA is present, code will run regardless of CONFIG setup.
 SOFT_INCLUDE "wh\earplugs\include\wh_earplugToggleKey.sqf";
 
 //	TODO : TBD - CBA special keybinding.

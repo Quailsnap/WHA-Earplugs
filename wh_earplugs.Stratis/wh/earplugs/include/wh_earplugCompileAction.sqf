@@ -42,16 +42,16 @@ wh_ep_fnc_earplugUpdateAction =
 	if !WH_EP_EARPLUGS_IN then
 	{
 		[player, 1,["ACE_SelfActions","ACE_Equipment","earplugs"]] call ace_interact_menu_fnc_removeActionFromObject;
-		[player, 1, ["ACE_SelfActions","ACE_Equipment"], WH_EP_ACT_INSERTPLUGS] call ace_interact_menu_fnc_addActionToObject;
+		
+		//	Only add the action to put them back in if the system is still enabled.
+		if (WH_EP_EARPLUGS && {WH_EP_EARPLUGS_ACTION}) then
+		{ [player, 1, ["ACE_SelfActions","ACE_Equipment"], WH_EP_ACT_INSERTPLUGS] call ace_interact_menu_fnc_addActionToObject; };
 	}
 	//	If they are in, do the opposite.
 	else
 	{
 		[player, 1,["ACE_SelfActions","ACE_Equipment","earplugs"]] call ace_interact_menu_fnc_removeActionFromObject;
-		
-		//	Only add the action to put them back in if the system is still enabled.
-		if WH_EP_EARPLUGS then
-		{ [player, 1, ["ACE_SelfActions","ACE_Equipment"], WH_EP_ACT_REMOVEPLUGS] call ace_interact_menu_fnc_addActionToObject; };
+		[player, 1, ["ACE_SelfActions","ACE_Equipment"], WH_EP_ACT_REMOVEPLUGS] call ace_interact_menu_fnc_addActionToObject;
 	};
 };
 
