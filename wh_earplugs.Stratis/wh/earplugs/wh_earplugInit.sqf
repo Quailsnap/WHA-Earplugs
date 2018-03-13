@@ -18,11 +18,9 @@
 if (!hasInterface) exitWith {};
 
 //	Global variables that will be flipped on and off.
-WH_EP_EARPLUGS = true;	// Whether the earpro system is enabled
+WH_EP_EARPLUGS = true;		// Whether the earpro system is enabled
 WH_EP_EARPLUGS_IN = false;	// Whether the earplugs are currently in and sound reduced
-WH_EP_EARPLUGS_DEFAULT = false;  // TODO : move to config
-WH_EP_EARPLUGS_MANUAL = false;	// TODO : uhh? this is used for purely keeping track
-								//			of player actions and is not touched auto
+WH_EP_MANUAL = false;		// used for purely keeping track of player actions
 
 //	Determine which mods are active.
 SOFT_INCLUDE "wh\earplugs\include\wh_earplugCheckMods.sqf";
@@ -71,7 +69,7 @@ waitUntil{player == player};
 waitUntil {!isNull (findDisplay 46)};
 
 //	Reducing volume if player has set that as default.
-if WH_EP_EARPLUGS_DEFAULT then
+if WH_EP_DEFAULT then
 {	call wh_ep_fnc_earplugInsert	};
 
 //	Updating player eventhandlers for respawning and getting in vehicles.
@@ -83,5 +81,5 @@ call wh_ep_fnc_earplugUpdateHandlers;
 //------------------------------------------------------------------------------------
 
 //	Add earplug self-interact or addaction.
-if WH_EP_EARPLUGS_ACTION then
+if WH_EP_ACTION then
 {	call wh_ep_fnc_earplugUpdateAction;	};

@@ -2,7 +2,7 @@
 //
 //	fn_earplugInsert.sqf - Simulates inserting earpro.
 //
-//	call wh_ep_fnc_earplugInsert.sqf;
+//	call wh_ep_fnc_earplugInsert;
 //
 //	@ /u/Whalen207 | Whale #5963
 //

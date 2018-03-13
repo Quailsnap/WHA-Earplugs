@@ -1,6 +1,6 @@
 ==========================================================================================
 
-	WHALE'S EARPLUGS (V0.2.0 Alpha) 
+	WHALE'S EARPLUGS (V0.2.2 Alpha) 
 	SCRIPT FOR ARMA 3
 	
 	( https://github.com/Whalen207/WH-EP )
@@ -11,6 +11,7 @@
 	-	Toggled in and out with an addAction that can be disabled.
 	-	May also be used with a keybind (default "-") that can be disabled.
 	-	By default will automatically be put in when entering vehicles.
+	-	Users can select which types of vehicles automatically trigger earplugs.
 	-	Configurable levels of sound protection.
 	-	Optionally present at mission start / upon respawn.
 	-	Full settings menu in briefing screen, or CBA addon options if CBA is present.
@@ -32,20 +33,24 @@
 		It does affect the direct channel. I'm looking for ways to avoid this.
 	
 	Planned Features:
-	-	Including / excluding certain vehicles from auto earplugs.
+	-	???
 	
-	How to Test This Script:
-	1.	Click on the green 'Clone or Download' button on the main github repository page.
-	2.	Download as ZIP. Extract wherever you like.
-	3.	Move the mission file alone (wh_earplugs.Stratis) inside your singleplayer mission 
+	How to Download:
+	1.	For stable releases, go to the main github page, click on 'releases',
+		find the latest release, and click on the source code .zip to download it.
+	2.	For the most recent version, go the main github page, click on the green
+		'Clone or download' button, and download ZIP.
+		
+	How to Test:
+	1.	Move the mission file alone (wh_earplugs.Stratis) inside your singleplayer mission 
 		folder, normally C:\Users\YOURNAME\Documents\Arma 3\USERNAME\missions.
-	4.	Open up Arma 3 with no mods, or with CBA, or with CBA and ACE.
-	5.	Open the editor and load up Stratis.
-	6.	In the top left, use the ajar folder icon to OPEN your mission folder.
-	7.	Navigate to wh_earplugs mission and OPEN that.
-	8.	In the bottom right, select 'PLAY SCENARIO IN SINGLEPLAYER.'
+	2.	Open up Arma 3 with no mods, or with CBA, or with CBA and ACE.
+	3.	Open the editor and load up Stratis.
+	4.	In the top left, use the ajar folder icon to OPEN your mission folder.
+	5.	Navigate to wh_earplugs mission and OPEN that.
+	6.	In the bottom right, select 'PLAY SCENARIO IN SINGLEPLAYER.'
 	
-	How to Add This Script to a Mission:
+	How to Add to a Mission:
 	1.	Move the wh folder (with \earplugs) into your root mission folder.
 	2.	Configure your settings inside wh_earplugCONFIG.sqf (Optional)
 	3.	Make a file called 'initPlayerLocal.sqf' or 'init.sqf' in the root mission folder.

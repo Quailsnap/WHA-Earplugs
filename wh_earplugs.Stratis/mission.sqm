@@ -17,9 +17,9 @@ class EditorData
 	class Camera
 	{
 		pos[]={2240.04,8.3105431,5747.6792};
-		dir[]={-0.22227561,-0.42741641,-0.87632996};
-		up[]={-0.10510719,0.9040153,-0.41439104};
-		aside[]={-0.96933192,3.114983e-007,0.24586506};
+		dir[]={-0.27630889,-0.49230501,-0.82543075};
+		up[]={-0.15630218,0.87037688,-0.4669306};
+		aside[]={-0.94830638,3.1970558e-007,0.31744108};
 	};
 };
 binarizationWanted=0;
@@ -29,17 +29,22 @@ addons[]=
 	"A3_Characters_F",
 	"A3_Weapons_F",
 	"A3_Armor_F_Beta_APC_Tracked_01",
+	"ace_realisticnames",
 	"A3_Air_F_Beta_Heli_Transport_01",
 	"A3_Armor_F_Gamma_MBT_01",
 	"A3_Soft_F_Gamma_Truck_01",
+	"ace_cargo",
 	"A3_Soft_F_MRAP_01",
 	"A3_Soft_F_Quadbike_01",
+	"ace_repair",
 	"A3_Air_F_EPC_Plane_CAS_01",
 	"A3_Air_F_Beta_Heli_Attack_01",
 	"A3_Air_F_Heli_Light_01",
 	"A3_Boat_F_Boat_Transport_01",
 	"A3_Boat_F_Boat_Armed_01",
+	"ace_vehicles",
 	"A3_Boat_F_Beta_SDV_01",
+	"ace_cookoff",
 	"A3_Weapons_F_Bootcamp_Ammoboxes",
 	"A3_Ui_F"
 };
@@ -47,7 +52,7 @@ class AddonsMetaData
 {
 	class List
 	{
-		items=14;
+		items=17;
 		class Item0
 		{
 			className="A3_Modules_F_Curator";
@@ -99,47 +104,68 @@ class AddonsMetaData
 		};
 		class Item7
 		{
+			className="ace_cargo";
+			name="ACE3 - Cargo";
+			author="ACE-Team";
+			url="http://ace3mod.com/";
+		};
+		class Item8
+		{
 			className="A3_Soft_F";
 			name="Arma 3 Alpha - Unarmored Land Vehicles";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item8
+		class Item9
+		{
+			className="ace_repair";
+			name="ACE3 - Repair";
+			author="ACE-Team";
+			url="http://ace3mod.com/";
+		};
+		class Item10
 		{
 			className="A3_Air_F_EPC";
 			name="Arma 3 Win Episode - Aircraft";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item9
+		class Item11
 		{
 			className="A3_Air_F";
 			name="Arma 3 Alpha - Aircraft";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item10
+		class Item12
 		{
 			className="A3_Boat_F";
 			name="Arma 3 Alpha - Boats and Submersibles";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item11
+		class Item13
 		{
 			className="A3_Boat_F_Beta";
 			name="Arma 3 Beta - Boats and Submersibles";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item12
+		class Item14
+		{
+			className="ace_cookoff";
+			name="ACE3 - Cook off";
+			author="ACE-Team";
+			url="http://ace3mod.com/";
+		};
+		class Item15
 		{
 			className="A3_Weapons_F_Bootcamp";
 			name="Arma 3 Bootcamp Update - Weapons and Accessories";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item13
+		class Item16
 		{
 			className="A3_Ui_F";
 			name="Arma 3 - User Interface";
@@ -152,8 +178,8 @@ randomSeed=14882937;
 class ScenarioData
 {
 	author="Whale";
-	overviewText="Test mission for Whale's Earplugs System. Zeus enabled. (https://github.com/Quailsnap/WH-EP)";
-	onLoadMission="Test mission for Whale's Earplugs System. Zeus enabled. (https://github.com/Quailsnap/WH-EP)";
+	overviewText="Test mission for Whale's Earplugs System. Zeus enabled. See readme or github for more information. (https://github.com/Quailsnap/WH-EP)";
+	onLoadMission="Test mission for Whale's Earplugs System. Zeus enabled. See readme or github for more information. (https://github.com/Quailsnap/WH-EP)";
 	saving=0;
 	wreckManagerMode=1;
 	wreckRemovalMinTime=900;
@@ -195,7 +221,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={2237.9932,6,5740.2378};
-				angles[]={-0,4.9309292,0};
+				angles[]={0,4.9309292,0};
 			};
 			id=73;
 			type="ModuleCurator_F";
@@ -410,7 +436,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={2248.3733,7.8258657,5715.4727};
-				angles[]={-0,0.21505946,0};
+				angles[]={0,0.21505946,0};
 			};
 			side="Empty";
 			flags=4;
@@ -524,7 +550,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={1894.2939,7.6119366,5758.7935};
-				angles[]={-0,1.7608194,0};
+				angles[]={0,1.7608194,0};
 			};
 			side="Empty";
 			flags=4;

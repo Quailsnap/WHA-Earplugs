@@ -17,5 +17,6 @@ class wh_ep
 		class earplugInsert {};
 		class earplugRemove {};
 		class earplugUpdateHandlers {};
+		class vehicleOfType {};
 	};
 };

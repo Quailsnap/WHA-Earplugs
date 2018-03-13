@@ -19,7 +19,7 @@ WH_EP_ACT_INSERTPLUGS =
 	"earplugs",	// Variable name.
 	"Insert Earplugs",	// Title to be displayed.
 	"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_connect_ca.paa",	// Icon in menus.
-	{ WH_EP_EARPLUGS_MANUAL = true; call wh_ep_fnc_earplugInsert; },	// Code run upon use.
+	{ WH_EP_MANUAL = true; call wh_ep_fnc_earplugInsert; },	// Code run upon use.
 	{true}	// Condition required to be useable.
 ] call ace_interact_menu_fnc_createAction;
 
@@ -30,7 +30,7 @@ WH_EP_ACT_REMOVEPLUGS =
 	"Remove Earplugs",	// Title to be displayed.
 	"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_connect_ca.paa",	// Icon in menus.
 	// TBD : Replace with another icon.
-	{ WH_EP_EARPLUGS_MANUAL = false; call wh_ep_fnc_earplugRemove; },	// Code run upon use.
+	{ WH_EP_MANUAL = false; call wh_ep_fnc_earplugRemove; },	// Code run upon use.
 	{true}	// Condition required to be useable.
 ] call ace_interact_menu_fnc_createAction;
 
@@ -44,7 +44,7 @@ wh_ep_fnc_earplugUpdateAction =
 		[player, 1,["ACE_SelfActions","ACE_Equipment","earplugs"]] call ace_interact_menu_fnc_removeActionFromObject;
 		
 		//	Only add the action to put them back in if the system is still enabled.
-		if (WH_EP_EARPLUGS && {WH_EP_EARPLUGS_ACTION}) then
+		if (WH_EP_EARPLUGS && {WH_EP_ACTION}) then
 		{ [player, 1, ["ACE_SelfActions","ACE_Equipment"], WH_EP_ACT_INSERTPLUGS] call ace_interact_menu_fnc_addActionToObject; };
 	}
 	//	If they are in, do the opposite.
@@ -74,11 +74,11 @@ wh_ep_fnc_earplugUpdateAction =
 		if (!isNil "WH_EP_ACT") then { player removeAction WH_EP_ACT; };
 		
 		//	Only add the action to put them back in if the system is still enabled.
-		if (WH_EP_EARPLUGS && {WH_EP_EARPLUGS_ACTION}) then
+		if (WH_EP_EARPLUGS && {WH_EP_ACTION}) then
 		{
 			WH_EP_ACT = player addAction 
 			["<t color='#94C67F'>Insert Earplugs</t>", 
-			{ WH_EP_EARPLUGS_MANUAL = true; call wh_ep_fnc_earplugInsert; }, [], 0.5, false];
+			{ WH_EP_MANUAL = true; call wh_ep_fnc_earplugInsert; }, [], 0.5, false];
 		};
 	}
 	//	If they are in, do the opposite.
@@ -86,11 +86,11 @@ wh_ep_fnc_earplugUpdateAction =
 	{
 		if (!isNil "WH_EP_ACT") then { player removeAction WH_EP_ACT; };
 		
-		if (WH_EP_EARPLUGS_ACTION) then
+		if (WH_EP_ACTION) then
 		{
 			WH_EP_ACT = player addAction 
 			["<t color='#C67F7F'>Remove Earplugs</t>", 
-			{ WH_EP_EARPLUGS_MANUAL = false; call wh_ep_fnc_earplugRemove; }, [], 0.5, false];
+			{ WH_EP_MANUAL = false; call wh_ep_fnc_earplugRemove; }, [], 0.5, false];
 		};
 	};
 };

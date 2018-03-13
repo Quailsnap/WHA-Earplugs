@@ -62,15 +62,15 @@ WH_EP_KEYUP =
 
 else
 {
-	["WH Earplugs",	//	Mod name
-	"WH_EP_TOGGLE_CBA",	//	 Key name
-	["Toggle Earplugs","Remove or insert WH earplugs with a keypress."],	//	 Key display name
+	["WH Earplugs", // Mod name
+	"WH_EP_TOGGLE_CBA", // Key name
+	["Toggle Earplugs","Remove or insert WH earplugs with a keypress."], // Key display name
 	{
 		if !WH_EP_EARPLUGS_IN 
 		then { call wh_ep_fnc_earplugInsert }
 		else { call wh_ep_fnc_earplugRemove };
-	},	//	Code ran on keydown
-	"",	//	Code ran on keyup
-	[0x0C, [false, false, false]]]	//	Default keybind [KEY, [SHIFT,CTRL,ALT]]
-	call CBA_fnc_addKeybind;	// Function call
+	}, // Code ran on keydown
+	"", // Code ran on keyup
+	[0x0C, [false, false, false]]] // Default keybind [KEY, [SHIFT,CTRL,ALT]]
+	call CBA_fnc_addKeybind; // Function call
 };

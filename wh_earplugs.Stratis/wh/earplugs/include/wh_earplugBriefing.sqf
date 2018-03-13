@@ -17,7 +17,7 @@ if !WH_EP_SHOWBRIEF exitWith {};
 _briefingString = 
 format ["<br/><font size='18'>WH EARPLUGS</font><br/><br/>
 WH earplugs are enabled in this mission.<br/>Currently they are, by default, %1.<br/>",
-["out","in"] select WH_EP_EARPLUGS_DEFAULT];
+["out","in"] select WH_EP_DEFAULT];
 
 //	Only add the part mentioning the toggle key if a toggle key exists.
 if WH_EP_TOGGLE then
@@ -39,7 +39,7 @@ _briefingString = _briefingString +
 format["By default the sound reduction is %1 (out of 1.0).<br/>",WH_EP_SOUNDLEVEL];
 
 //	If auto earplugs in vehicles is enabled, mention it.
-if WH_EP_AUTO_VEHICLES then
+if WH_EP_AUTO then
 {
 	_briefingString = _briefingString + 
 	"Earplugs will be automatically put in when you enter a vehicle.<br/>";
@@ -80,14 +80,14 @@ if !WH_EP_MOD_CBA then
 	_briefingString = _briefingString + "____________________<br/><br/>";
 	_briefingString = _briefingString + "<font size='18'>SETTINGS</font><br/><br/>";
 	
-	_briefingString = _briefingString + "EARPLUG STATE:   ( <execute expression=""call wh_ep_fnc_earplugInsert;WH_EP_EARPLUGS_MANUAL=true;"">IN</execute> / <execute expression=""call wh_ep_fnc_earplugRemove;WH_EP_EARPLUGS_MANUAL=false;"">OUT</execute> ) 
+	_briefingString = _briefingString + "EARPLUG STATE:   ( <execute expression=""call wh_ep_fnc_earplugInsert;WH_EP_MANUAL=true;"">IN</execute> / <execute expression=""call wh_ep_fnc_earplugRemove;WH_EP_MANUAL=false;"">OUT</execute> ) 
 	<br/>Toggle your earplugs.<br/><br/>";
 	
-	_briefingString = _briefingString + "DEFAULT STATE:   ( <execute expression=""hintsilent 'Earplugs will be in by default.';WH_EP_EARPLUGS_DEFAULT=true;profileNamespace setVariable ['WH_EP_EARPLUGS_DEFAULT',true];saveProfileNamespace;call wh_ep_fnc_earplugUpdateHandlers;"">YES</execute> / <execute expression=""hintsilent 'Earplugs will be in by default.';WH_EP_EARPLUGS_DEFAULT=false;profileNamespace setVariable ['WH_EP_EARPLUGS_DEFAULT',false];saveProfileNamespace;call wh_ep_fnc_earplugUpdateHandlers;"">NO</execute> ) 
+	_briefingString = _briefingString + "DEFAULT STATE:   ( <execute expression=""hintsilent 'Earplugs will be in by default.';WH_EP_DEFAULT=true;profileNamespace setVariable ['WH_EP_DEFAULT',true];saveProfileNamespace;call wh_ep_fnc_earplugUpdateHandlers;"">YES</execute> / <execute expression=""hintsilent 'Earplugs will be in by default.';WH_EP_DEFAULT=false;profileNamespace setVariable ['WH_EP_DEFAULT',false];saveProfileNamespace;call wh_ep_fnc_earplugUpdateHandlers;"">NO</execute> ) 
 	( Default: NO )
 	<br/>Will your earplugs be in at mission start and upon respawn?<br/><br/>";
 	
-	_briefingString = _briefingString + "EARPLUG ACTION:   ( <execute expression=""hintsilent 'Earplugs action will be shown.';WH_EP_EARPLUGS_ACTION=true;profileNamespace setVariable ['WH_EP_EARPLUGS_ACTION',true];saveProfileNamespace;call wh_ep_fnc_earplugUpdateAction;"">SHOW</execute> / <execute expression=""hintsilent 'Earplug action will be hidden after inserting and removing.';WH_EP_EARPLUGS_ACTION=false;profileNamespace setVariable ['WH_EP_EARPLUGS_ACTION',false];saveProfileNamespace;"">HIDE</execute> ) 
+	_briefingString = _briefingString + "EARPLUG ACTION:   ( <execute expression=""hintsilent 'Earplugs action will be shown.';WH_EP_ACTION=true;profileNamespace setVariable ['WH_EP_ACTION',true];saveProfileNamespace;call wh_ep_fnc_earplugUpdateAction;"">SHOW</execute> / <execute expression=""hintsilent 'Earplug action will be hidden after inserting and removing.';WH_EP_ACTION=false;profileNamespace setVariable ['WH_EP_ACTION',false];saveProfileNamespace;"">HIDE</execute> ) 
 	( Default: SHOW )
 	<br/>Should we give you an menu action to toggle your earplugs at will?<br/><br/>";
 	
@@ -100,9 +100,18 @@ if !WH_EP_MOD_CBA then
 	( Default: 40% )
 	<br/>What percentage of the original should the dampened sound be?<br/><br/>";
 	
-	_briefingString = _briefingString + "VEHICLE PLUGS:   ( <execute expression=""hintsilent 'Earplugs will be automatically put in when entering vehicles.';WH_EP_AUTO_VEHICLES=true;profileNamespace setVariable ['WH_EP_AUTO_VEHICLES',true];saveProfileNamespace;call wh_ep_fnc_earplugUpdateHandlers;"">YES</execute> / <execute expression=""hintsilent 'Earplug state will not be affected when entering vehicles.';WH_EP_AUTO_VEHICLES=false;profileNamespace setVariable ['WH_EP_AUTO_VEHICLES',false];saveProfileNamespace;call wh_ep_fnc_earplugUpdateHandlers;"">NO</execute> ) 
-	( Default: YES )
-	<br/>Do you want plugs automatically put in when entering vehicles?<br/><br/>";
+	_briefingString = _briefingString + "VEHICLE PLUGS:   ( <execute expression=""hintsilent 'Earplugs will be automatically put in when entering vehicles.';WH_EP_AUTO=true;profileNamespace setVariable ['WH_EP_AUTO',true];saveProfileNamespace;call wh_ep_fnc_earplugUpdateHandlers;"">YES</execute> / <execute expression=""hintsilent 'Earplug state will not be affected when entering vehicles.';WH_EP_AUTO=false;profileNamespace setVariable ['WH_EP_AUTO',false];saveProfileNamespace;call wh_ep_fnc_earplugUpdateHandlers;"">NO</execute> ) ( Default: YES )<br/>
+	
+	( 
+	<execute expression=""hintsilent 'Earplugs will be automatically put in when entering all vehicles, including static weapons.';WH_EP_AUTO_VEHICLES=['Tank','Helicopter','Car','Plane','Ship','StaticWeapon'];profileNamespace setVariable ['WH_EP_AUTO_VEHICLES',['Tank','Helicopter','Car','Plane','Ship','StaticWeapon']];saveProfileNamespace;"">ALL VEHICLES</execute> / 
+	<execute expression=""hintsilent 'Earplugs will be automatically put in when entering all vehicles except static weapons.';WH_EP_AUTO_VEHICLES=['Tank','Helicopter','Car','Plane','Ship'];profileNamespace setVariable ['WH_EP_AUTO_VEHICLES',['Tank','Helicopter','Car','Plane','Ship']];saveProfileNamespace;"">ALL EXCEPT TURRETS</execute> / 
+	<execute expression=""hintsilent 'Earplugs will be automatically put in when entering tanks, planes, or helicopters.';WH_EP_AUTO_VEHICLES=['Tank','Helicopter','Plane'];profileNamespace setVariable ['WH_EP_AUTO_VEHICLES',['Tank','Helicopter','Plane']];saveProfileNamespace;"">TANKS AND AIR</execute> / 
+	<execute expression=""hintsilent 'Earplugs will be automatically put in when entering air vehicles.';WH_EP_AUTO_VEHICLES=['Helicopter','Plane'];profileNamespace setVariable ['WH_EP_AUTO_VEHICLES',['Helicopter','Plane']];saveProfileNamespace;"">ALL AIR</execute> / 
+	<execute expression=""hintsilent 'Earplugs will be automatically put in when entering jets.';WH_EP_AUTO_VEHICLES=['Plane'];profileNamespace setVariable ['WH_EP_AUTO_VEHICLES',['Plane']];saveProfileNamespace;"">PLANES ONLY</execute> 
+	) <br/>
+	
+	Do you want plugs automatically put in when entering vehicles?<br/>
+	Also, which vehicles do you want to automatically use plugs?<br/><br/>";
 	
 	_briefingString = _briefingString + "TOGGLE KEY:   ( <execute expression=""hintsilent format['Earplugs can be toggled in and out with your %1 key. This will require a mission restart to take effect.',WH_EP_TOGGLE_NAME];WH_EP_TOGGLE=true;profileNamespace setVariable ['WH_EP_TOGGLE',true];saveProfileNamespace;call wh_ep_fnc_earplugUpdateAction;"">YES</execute> / <execute expression=""hintsilent format['The %1 key will not be used for earplugs. This will require a mission restart to take effect.',WH_EP_TOGGLE_NAME];WH_EP_TOGGLE=false;profileNamespace setVariable ['WH_EP_TOGGLE',false];saveProfileNamespace;"">NO</execute> ) 
 	( Default: YES )" +

@@ -14,14 +14,17 @@
 if !WH_EP_MOD_CBA then
 {
 
-	if (!isNil {profileNamespace getVariable "WH_EP_EARPLUGS_DEFAULT"}) then 
-	{	WH_EP_EARPLUGS_DEFAULT = profileNamespace getVariable "WH_EP_EARPLUGS_DEFAULT";	};
+	if (!isNil {profileNamespace getVariable "WH_EP_DEFAULT"}) then 
+	{	WH_EP_DEFAULT = profileNamespace getVariable "WH_EP_DEFAULT";	};
 
-	if (!isNil {profileNamespace getVariable "WH_EP_EARPLUGS_ACTION"}) then 
-	{	WH_EP_EARPLUGS_ACTION = profileNamespace getVariable "WH_EP_EARPLUGS_ACTION";	};
+	if (!isNil {profileNamespace getVariable "WH_EP_ACTION"}) then 
+	{	WH_EP_ACTION = profileNamespace getVariable "WH_EP_ACTION";	};
 	
 	if (!isNil {profileNamespace getVariable "WH_EP_SOUNDLEVEL"}) then 
 	{	WH_EP_SOUNDLEVEL = profileNamespace getVariable "WH_EP_SOUNDLEVEL";	};
+	
+	if (!isNil {profileNamespace getVariable "WH_EP_AUTO"}) then 
+	{	WH_EP_AUTO = profileNamespace getVariable "WH_EP_AUTO";	};
 	
 	if (!isNil {profileNamespace getVariable "WH_EP_AUTO_VEHICLES"}) then 
 	{	WH_EP_AUTO_VEHICLES = profileNamespace getVariable "WH_EP_AUTO_VEHICLES";	};
@@ -38,35 +41,51 @@ if !WH_EP_MOD_CBA then
 
 else
 {
-	//	Setting for whether plugs can be toggled with a keypress.
+	//	Setting for whether plugs should be automatically put in when entering vehicles.
 	[
-		"WH_EP_TOGGLE",				// Internal setting name and value set.
+		"WH_EP_AUTO",		// Internal setting name and value set.
 		"CHECKBOX", 				// Setting type.
-		"Earplug Keybind", 			// Name shown in menu.
+		"Vehicle Earplugs", 		// Name shown in menu.
 		"WH Earplugs", 				// Category shown in menu.
-		WH_EP_TOGGLE 				// Setting type-specific data.
+		WH_EP_AUTO, 		// Setting type-specific data.
+		nil, 						// Nil or 0 for changeable, 1 to reset to default, 2 to lock.
+		{ call wh_ep_fnc_earplugUpdateHandlers; }
+	] call CBA_Settings_fnc_init;
+
+	//	Which vehicles to apply automatic plugs to.
+	[
+		"WH_EP_AUTO_VEHICLES",		// Internal setting name and value set.
+		"LIST", 					// Setting type.
+		"Which Vehicles?", 			// Name shown in menu.
+		"WH Earplugs", 				// Category shown in menu.
+		[
+			[WH_EP_AUTO_VEHICLES,['Tank','Helicopter','Car','Plane','Ship','StaticWeapon'],['Tank','Helicopter','Car','Plane','Ship'],['Tank','Helicopter','Plane'],['Helicopter','Plane'],['Plane']],
+			["Default","All Vehicles","All Except Turrets","Tanks and Air","Helicopters and Planes","Just Planes"],
+			0
+		] 							// Setting type-specific data.
+									// Executed at mission start and every change.
 	] call CBA_Settings_fnc_init;
 
 	//	Setting for whether plugs should be in at mission start / respawns.
 	[
-		"WH_EP_EARPLUGS_DEFAULT",	// Internal setting name and value set.
+		"WH_EP_DEFAULT",	// Internal setting name and value set.
 		"CHECKBOX", 				// Setting type.
 		"Plugs at Mission Start", 	// Name shown in menu.
 		"WH Earplugs", 				// Category shown in menu.
-		WH_EP_EARPLUGS_DEFAULT, 	// Setting type-specific data.
+		WH_EP_DEFAULT, 	// Setting type-specific data.
 		nil, 						// Nil or 0 for changeable, 1 to reset to default, 2 to lock.
 		{ call wh_ep_fnc_earplugUpdateHandlers; }
 	] call CBA_Settings_fnc_init;
 
 	//	Setting for whether plugs should be in at mission start / respawns.
 	[
-		"WH_EP_EARPLUGS_ACTION",	// Internal setting name and value set.
+		"WH_EP_ACTION",	// Internal setting name and value set.
 		"CHECKBOX", 				// Setting type.
 		"Show Earplug Action", 		// Name shown in menu.
 		"WH Earplugs", 				// Category shown in menu.
-		WH_EP_EARPLUGS_ACTION, 		// Setting type-specific data.
+		WH_EP_ACTION, 		// Setting type-specific data.
 		nil, 						// Nil or 0 for changeable, 1 to reset to default, 2 to lock.
-		{ if WH_EP_EARPLUGS_ACTION then {call wh_ep_fnc_earplugUpdateAction;}; }
+		{ if WH_EP_ACTION then {call wh_ep_fnc_earplugUpdateAction;}; }
 	] call CBA_Settings_fnc_init;
 	
 	//	Setting to dynamically alter sound level.
@@ -77,16 +96,4 @@ else
 		"WH Earplugs", 				// Category shown in menu.
 		[0.1, 0.9, WH_EP_SOUNDLEVEL, 2]// Setting type-specific data.
 	] call CBA_Settings_fnc_init;
-	
-	//	Setting for whether plugs should be automatically put in when entering vehicles.
-	[
-		"WH_EP_AUTO_VEHICLES",		// Internal setting name and value set.
-		"CHECKBOX", 				// Setting type.
-		"Vehicle Earplugs", 		// Name shown in menu.
-		"WH Earplugs", 				// Category shown in menu.
-		WH_EP_AUTO_VEHICLES, 		// Setting type-specific data.
-		nil, 						// Nil or 0 for changeable, 1 to reset to default, 2 to lock.
-		{ call wh_ep_fnc_earplugUpdateHandlers; }
-	] call CBA_Settings_fnc_init;
-
 };
