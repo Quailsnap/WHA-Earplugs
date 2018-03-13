@@ -1,8 +1,8 @@
 //====================================================================================
 //
-//	fn_earplugInsert.sqf - Simulates inserting earpro.
+//	fn_earplugRemove.sqf - Simulates removing earpro.
 //
-//	call wh_ep_fnc_earplugInsert.sqf;
+//	call wh_ep_fnc_earplugRemove;
 //
 //	@ /u/Whalen207 | Whale #5963
 //
