@@ -1,6 +1,6 @@
 ==========================================================================================
 
-	WHALE'S EARPLUGS (V0.2.2 Alpha) 
+	WHALE'S EARPLUGS (V0.3.0 Beta) 
 	SCRIPT FOR ARMA 3
 	
 	( https://github.com/Whalen207/WH-EP )
@@ -17,12 +17,14 @@
 	-	Full settings menu in briefing screen, or CBA addon options if CBA is present.
 	
 	Mod Compatibility:
+	-	This script is not compatible with ACE hearing.
 	-	If ACE is present, the normal menu addAction will be replaced with a self-interact
 		option found under self-interact > equipment.
 	-	If CBA is present, the settings menu in briefing will be replaced with a menu
-		under ESC > Options > Addon Options > WH Earplugs.
-	-	If CBA is present, the toggle key bind previously only configurable by
-		the missionmaker (default "-") can now be changed by users.
+		under ESC > Options > Addon Options > WH Earplugs,the toggle key bind previously 
+		only configurable by the missionmaker (default "-") can now be changed by users
+		in ESC > Options > Controls > Configure Addons > WH Earplugs, and an additional
+		"Hold to Deafen" button can be utilized.
 	
 	Frequently Asked Questions:
 	-	"How do I use this script?"
@@ -54,10 +56,8 @@
 	1.	Move the wh folder (with \earplugs) into your root mission folder.
 	2.	Configure your settings inside wh_earplugCONFIG.sqf (Optional)
 	3.	Make a file called 'initPlayerLocal.sqf' or 'init.sqf' in the root mission folder.
-	4.	Put this code in 'initPlayerLocal.sqf' OR 'init.sqf': 
-	5.	[] execVM "wh\earplugs\wh_earplugInit.sqf";
-	6.	Make a file called 'description.ext' in the root mission folder.
-	7.	Put this code in the 'description.ext' function header (CfgFunctions):
-		#include "wh\earplugs\functions\wh_earplugFunctions.hpp"
+	4.	Put this code in 'initPlayerLocal.sqf' OR 'init.sqf' to have the mission run the
+		script each time it starts up: 
+		[] execVM "wh\earplugs\wh_earplugInit.sqf";
 
 ==========================================================================================

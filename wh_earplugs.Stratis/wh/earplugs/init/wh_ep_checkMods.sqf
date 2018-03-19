@@ -1,6 +1,6 @@
 //====================================================================================
 //
-//	wh_earplugCheckMods.sqf - Checks the presence of certain mods.
+//	wh_ep_checkMods.sqf - Checks the presence of certain mods.
 //
 //	@ /u/Whalen207 | Whale #5963
 //
@@ -13,5 +13,8 @@
 //	CBA
 WH_EP_MOD_CBA = (isClass (configFile >> "CfgPatches" >> "cba_common"));
 
-//	ACE
+//	ACE core
 WH_EP_MOD_ACE = (isClass (configFile >> "CfgPatches" >> "ace_common"));
+
+//	ACE hearing
+WH_EP_MOD_ACEH = (isClass (configFile >> "CfgPatches" >> "ace_hearing"));

@@ -1,4 +1,0 @@
-class CfgFunctions
-{
-	#include "wh\earplugs\functions\wh_earplugFunctions.hpp"
-};

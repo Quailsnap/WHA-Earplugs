@@ -1,7 +1,6 @@
 //====================================================================================
 //
-//	wh_earplugUpdateHandlers.sqf - Updates eventhandlers for unit respawns and vehicles.
-//									Featuring your favorite redundancy protection.
+//	wh_ep_updateHandlers.sqf - Updates eventhandlers for unit respawns and vehicles.
 //
 //	@ /u/Whalen207 | Whale #5963
 //
@@ -19,8 +18,8 @@ if WH_EP_EARPLUGS then
 	{
 		WH_EP_EH_RESPAWN = player addEventHandler ["Respawn",
 		{
-			call wh_ep_fnc_earplugUpdateAction; 
-			if WH_EP_DEFAULT then {call wh_ep_fnc_earplugInsert}; 
+			call wh_ep_fnc_updateAction; 
+			if WH_EP_DEFAULT then {call wh_ep_fnc_Insert}; 
 		}];
 	};
 	
@@ -32,14 +31,14 @@ if WH_EP_EARPLUGS then
 			{
 				_veh = (_this select 2);
 				_vehicleOfType = [_veh, WH_EP_AUTO_VEHICLES] call wh_ep_fnc_vehicleOfType;
-				if _vehicleOfType then { call wh_ep_fnc_earplugInsert; };
+				if _vehicleOfType then { call wh_ep_fnc_insert; };
 			}]; 
 		};
 		
 		if (isNil "WH_EP_EH_VEHICLEOUT") then
 		{
 			WH_EP_EH_VEHICLEOUT = player addEventHandler ["GetOutMan",
-			{ if !WH_EP_MANUAL then {call wh_ep_fnc_earplugRemove;}; }];
+			{ if !WH_EP_MANUAL then {call wh_ep_fnc_remove;}; }];
 		};
 	}
 	else

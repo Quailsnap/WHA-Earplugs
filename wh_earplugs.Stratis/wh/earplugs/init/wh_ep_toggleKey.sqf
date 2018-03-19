@@ -1,7 +1,7 @@
 //====================================================================================
 //
-//	wh_earplugToggleKey.sqf - Sets up a key that can be used to toggle plugs with a press.
-//								Behavior varies depending on presence of CBA.
+//	wh_ep_toggleKey.sqf - Sets up a key that can be used to toggle plugs with a press.
+//							Behavior varies depending on presence of CBA.
 //
 //	@ /u/Whalen207 | Whale #5963
 //
@@ -28,9 +28,9 @@ WH_EP_KEYDOWN =
 	_handled = false;
 	if(_key == WH_EP_TOGGLE_ID) then
 	{
-		if !WH_EP_EARPLUGS_IN 
-		then { call wh_ep_fnc_earplugInsert }
-		else { call wh_ep_fnc_earplugRemove };
+		if (!(player getVariable 'WH_EP_EARPLUGS_IN'))
+		then { WH_EP_MANUAL = true; call wh_ep_fnc_insert; }
+		else { WH_EP_MANUAL = false; call wh_ep_fnc_remove; };
 		
 		_handled = true;
 	};
@@ -66,11 +66,18 @@ else
 	"WH_EP_TOGGLE_CBA", // Key name
 	["Toggle Earplugs","Remove or insert WH earplugs with a keypress."], // Key display name
 	{
-		if !WH_EP_EARPLUGS_IN 
-		then { call wh_ep_fnc_earplugInsert }
-		else { call wh_ep_fnc_earplugRemove };
+		if (!(player getVariable 'WH_EP_EARPLUGS_IN'))
+		then { WH_EP_MANUAL = true; call wh_ep_fnc_insert; }
+		else { WH_EP_MANUAL = false; call wh_ep_fnc_remove; };
 	}, // Code ran on keydown
 	"", // Code ran on keyup
 	[0x0C, [false, false, false]]] // Default keybind [KEY, [SHIFT,CTRL,ALT]]
+	call CBA_fnc_addKeybind; // Function call
+	
+	["WH Earplugs", // Mod name
+	"WH_EP_HOLDTODEAF_CBA", // Key name
+	["Hold to Deafen","Sound will be reduced as long as this key is held."], // Key display name
+	{ WH_EP_MANUAL = true; call wh_ep_fnc_insert; }, // Code ran on keydown
+	{ WH_EP_MANUAL = false; call wh_ep_fnc_remove; }] // Code ran on keyup
 	call CBA_fnc_addKeybind; // Function call
 };

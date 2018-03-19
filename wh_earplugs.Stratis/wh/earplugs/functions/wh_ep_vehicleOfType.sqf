@@ -1,7 +1,7 @@
 //====================================================================================
 //
-//	fn_vehicleOfType.sqf - Checks is player vehicle is in an array of config types.
-//							For use with WH Earplugs system.
+//	wh_ep_vehicleOfType.sqf - Checks is player vehicle is in an array of config types.
+//								For use with WH Earplugs system.
 //
 //	call wh_ep_fnc_vehicleOfType;
 //

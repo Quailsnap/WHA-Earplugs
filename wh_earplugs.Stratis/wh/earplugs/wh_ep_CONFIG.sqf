@@ -1,6 +1,6 @@
 //=======================================================================================
 //
-//	wh_earplugConfig.sqf - Contains configurable values for WH earplugs.
+//	wh_ep_CONFIG.sqf - Contains configurable values for WH earplugs.
 //
 //	Note:	Many of these settings may be altered by individual clients to their taste
 //			via the CBA settings or briefing menu. If they are using the briefing menu,
@@ -18,7 +18,7 @@
 
 WH_EP_EARPLUGS = true;			// Enable or disable the earplugs system.		(true)
 
-WH_EP_SOUNDLEVEL = 0.4;			// Level of sound when earplugs are in, of 1. 	(0.4)
+WH_EP_SOUNDLEVEL = 0.5;			// Level of sound when earplugs are in, of 1. 	(0.4)
 
 WH_EP_DEFAULT = false;			// Whether earplugs should be in at start.		(false)
 
@@ -45,3 +45,5 @@ WH_EP_TOGGLE_KEY = "timeDec";	// Key that can be pressed to toggle plugs.	("time
 WH_EP_SHOWBRIEF = true;			// Whether to show a briefing describing		(true)
 								// the features of WH Earplugs. Highly
 								// recommended, especially if not using CBA.
+								
+// WH_EP_DEBUG = true; 			// Script debug tracing.	(TBD)					(false)

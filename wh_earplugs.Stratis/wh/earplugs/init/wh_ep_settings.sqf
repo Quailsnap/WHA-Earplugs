@@ -1,7 +1,7 @@
 //====================================================================================
 //
-//	wh_nametagSettings.sqf - Imports settings if CBA is not present, sets up a 
-//								settings interface if it is.
+//	wh_ep_settings.sqf - Imports settings if CBA is not present, sets up a 
+//							briefing settings interface if it is.
 //
 //	@ /u/Whalen207 | Whale #5963
 //
@@ -49,7 +49,7 @@ else
 		"WH Earplugs", 				// Category shown in menu.
 		WH_EP_AUTO, 		// Setting type-specific data.
 		nil, 						// Nil or 0 for changeable, 1 to reset to default, 2 to lock.
-		{ call wh_ep_fnc_earplugUpdateHandlers; }
+		{ call wh_ep_fnc_updateHandlers; }
 	] call CBA_Settings_fnc_init;
 
 	//	Which vehicles to apply automatic plugs to.
@@ -74,7 +74,7 @@ else
 		"WH Earplugs", 				// Category shown in menu.
 		WH_EP_DEFAULT, 	// Setting type-specific data.
 		nil, 						// Nil or 0 for changeable, 1 to reset to default, 2 to lock.
-		{ call wh_ep_fnc_earplugUpdateHandlers; }
+		{ call wh_ep_fnc_updateHandlers; }
 	] call CBA_Settings_fnc_init;
 
 	//	Setting for whether plugs should be in at mission start / respawns.
@@ -85,7 +85,7 @@ else
 		"WH Earplugs", 				// Category shown in menu.
 		WH_EP_ACTION, 		// Setting type-specific data.
 		nil, 						// Nil or 0 for changeable, 1 to reset to default, 2 to lock.
-		{ if WH_EP_ACTION then {call wh_ep_fnc_earplugUpdateAction;}; }
+		{ if WH_EP_ACTION then {call wh_ep_fnc_updateAction;}; }
 	] call CBA_Settings_fnc_init;
 	
 	//	Setting to dynamically alter sound level.
