@@ -15,7 +15,7 @@
 //	Used so that I don't have to use actual #include command, which can create issues.
 #define CALL_NOSAVE call compile preprocessFileLineNumbers
 
-//	Script name.
+//	User-friendly name to track script.
 scriptName "WH EARPLUGS";
 
 //	Make sure this isn't a dedicated server or headless client.
@@ -68,8 +68,6 @@ waitUntil {!isNull (findDisplay 46)};
 
 //	Reducing volume if player has set that as default.
 if WH_EP_DEFAULT then { call wh_ep_fnc_insert };
-
-
 
 //	Updating player eventhandlers for respawning and getting in vehicles.
 call wh_ep_fnc_updateHandlers;
