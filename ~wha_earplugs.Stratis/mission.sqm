@@ -170,8 +170,8 @@ randomSeed=14882937;
 class ScenarioData
 {
 	author="Whale";
-	overviewText="Test mission for Whale's Earplugs System. Zeus enabled. See readme or github for more information. (https://github.com/Quailsnap/WH-EP)";
-	onLoadMission="Test mission for Whale's Earplugs System. Zeus enabled. See readme or github for more information. (https://github.com/Quailsnap/WH-EP)";
+	overviewText="Test mission for Whale's Earplugs System. Zeus enabled. See readme or github for more information. (https://github.com/Quailsnap/WHA-EP)";
+	onLoadMission="Test mission for Whale's Earplugs System. Zeus enabled. See readme or github for more information. (https://github.com/Quailsnap/WHA-EP)";
 	saving=0;
 	wreckManagerMode=1;
 	wreckRemovalMinTime=900;
@@ -186,7 +186,7 @@ class Mission
 	assetType="Free";
 	class Intel
 	{
-		briefingName="WH Earplugs Test Mission";
+		briefingName="WHA Earplugs Test Mission";
 		resistanceWest=0;
 		timeOfChanges=1800.0002;
 		startWeather=0.30000001;
