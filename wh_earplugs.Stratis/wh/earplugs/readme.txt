@@ -1,10 +1,10 @@
 ==========================================================================================
 
-	WHALE'S EARPLUGS (V0.3.1 Beta) 
+	WHALE'S EARPLUGS (V0.3.2 Beta) 
 	SCRIPT FOR ARMA 3
 	
-	( https://github.com/Whalen207/WH-EP )
-	Contact @ /u/Whalen207 | Whale #5963
+	( https://github.com/Whalen207/WHA-EP )
+	Contact Contact: Whale #5963
 
 	Features:
 	-	Plugs reduce in-game effect volume without touching music or Teamspeak.
@@ -21,9 +21,9 @@
 	-	If ACE is present, the normal menu addAction will be replaced with a self-interact
 		option found under self-interact > equipment.
 	-	If CBA is present, the settings menu in briefing will be replaced with a menu
-		under ESC > Options > Addon Options > WH Earplugs,the toggle key bind previously 
+		under ESC > Options > Addon Options > WHA Earplugs,the toggle key bind previously 
 		only configurable by the missionmaker (default "-") can now be changed by users
-		in ESC > Options > Controls > Configure Addons > WH Earplugs, and an additional
+		in ESC > Options > Controls > Configure Addons > WHA Earplugs, and an additional
 		"Hold to Deafen" button can be utilized.
 	
 	Frequently Asked Questions:
@@ -44,20 +44,20 @@
 		'Clone or download' button, and download ZIP.
 		
 	How to Test:
-	1.	Move the mission file alone (wh_earplugs.Stratis) inside your singleplayer mission 
+	1.	Move the mission file alone (wha_earplugs.Stratis) inside your singleplayer mission 
 		folder, normally C:\Users\YOURNAME\Documents\Arma 3\USERNAME\missions.
 	2.	Open up Arma 3 with no mods, or with CBA, or with CBA and ACE.
 	3.	Open the editor and load up Stratis.
 	4.	In the top left, use the ajar folder icon to OPEN your mission folder.
-	5.	Navigate to wh_earplugs mission and OPEN that.
+	5.	Navigate to wha_earplugs mission and OPEN that.
 	6.	In the bottom right, select 'PLAY SCENARIO IN SINGLEPLAYER.'
 	
 	How to Add to a Mission:
 	1.	Move the wh folder (with \earplugs) into your root mission folder.
-	2.	Configure your settings inside wh_earplugCONFIG.sqf (Optional)
+	2.	Configure your settings inside wha_earplugCONFIG.sqf (Optional)
 	3.	Make a file called 'initPlayerLocal.sqf' or 'init.sqf' in the root mission folder.
 	4.	Put this code in 'initPlayerLocal.sqf' OR 'init.sqf' to have the mission run the
 		script each time it starts up: 
-		[] execVM "wh\earplugs\wh_earplugInit.sqf";
+		[] execVM "wha\earplugs\wha_earplugInit.sqf";
 
 ==========================================================================================

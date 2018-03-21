@@ -1,8 +1,8 @@
 //====================================================================================
 //
-//	wh_ep_checkMods.sqf - Returns the presence of certain mods.
+//	wha_ep_checkMods.sqf - Returns the presence of certain mods.
 //
-//	@ /u/Whalen207 | Whale #5963
+//	Contact: Whale #5963
 //
 //====================================================================================
 

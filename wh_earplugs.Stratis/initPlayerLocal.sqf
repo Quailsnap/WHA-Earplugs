@@ -1,2 +1,2 @@
-// EARPLUGS
-[] execVM "wh\earplugs\wh_ep_init.sqf";
+// WHA EARPLUGS
+[] execVM "wha\earplugs\wha_ep_init.sqf";

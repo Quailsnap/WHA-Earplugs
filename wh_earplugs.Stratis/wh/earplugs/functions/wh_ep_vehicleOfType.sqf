@@ -1,11 +1,11 @@
 //====================================================================================
 //
-//	wh_ep_vehicleOfType.sqf - Checks is player vehicle is in an array of config types.
-//								For use with WH Earplugs system.
+//	wha_ep_vehicleOfType.sqf - Checks is player vehicle is in an array of config types.
+//								For use with WHA Earplugs system.
 //
-//	call wh_ep_fnc_vehicleOfType;
+//	call wha_ep_fnc_vehicleOfType;
 //
-//	@ /u/Whalen207 | Whale #5963
+//	Contact: Whale #5963
 //
 //====================================================================================
 

@@ -1,10 +1,10 @@
 //====================================================================================
 //
-//	wh_ep_init.sqf - Initializes values for WH earplugs.
+//	wha_ep_init.sqf - Initializes values for WHA earplugs.
 //
-//	[] execVM "wh\earplugs\wh_ep_init.sqf";
+//	[] execVM "wha\earplugs\wha_ep_init.sqf";
 //
-//	@ /u/Whalen207 | Whale #5963
+//	Contact: Whale #5963
 //
 //====================================================================================
 
@@ -16,15 +16,15 @@
 #define CALL_NOSAVE call compile preprocessFileLineNumbers
 
 //	User-friendly name to track script.
-scriptName "WH EARPLUGS";
+scriptName "WHA EARPLUGS";
 
 //	Make sure this isn't a dedicated server or headless client.
 if (!hasInterface) exitWith {};
 
 //	Global variables that will be flipped on and off.
-WH_EP_EARPLUGS = true; // Whether the earpro system is enabled
-player setVariable['WH_EP_EARPLUGS_IN',false,true]; // Whether the earplugs are currently in and sound reduced
-WH_EP_MANUAL = false; // used for purely keeping track of player actions
+WHA_EP_EARPLUGS = true; // Whether the earpro system is enabled
+player setVariable['WHA_EP_EARPLUGS_IN',false,true]; // Whether the earplugs are currently in and sound reduced
+WHA_EP_MANUAL = false; // used for purely keeping track of player actions
 
 
 //------------------------------------------------------------------------------------
@@ -32,31 +32,31 @@ WH_EP_MANUAL = false; // used for purely keeping track of player actions
 //------------------------------------------------------------------------------------
 
 //	Get an array of which mods are currently active.
-_modsArray = [] CALL_NOSAVE "wh\earplugs\init\wh_ep_checkMods.sqf";
+_modsArray = [] CALL_NOSAVE "wha\earplugs\init\wha_ep_checkMods.sqf";
 
 //	Interperet returned array from checkMods.
 _modsArray params [ ["_cbaPresent",false], ["_acePresent",true] ];
 
 //	Allows for missionmaker configuration of important settings.
-CALL_NOSAVE "wh\earplugs\wh_ep_CONFIG.sqf";
+CALL_NOSAVE "wha\earplugs\wha_ep_CONFIG.sqf";
 
 //	Emergency exit if the earplug system is disabled.
-if (!WH_EP_EARPLUGS) exitWith {};
+if (!WHA_EP_EARPLUGS) exitWith {};
 
 //	Construct & compile functions.
 //	Uses local variables collected earlier to determine which functions to use.
-[_acePresent] CALL_NOSAVE "wh\earplugs\wh_ep_functions.sqf";
+[_acePresent] CALL_NOSAVE "wha\earplugs\wha_ep_functions.sqf";
 
 //	Imports settings if CBA is not present,
 //	sets up an options menu if it is.
-[_cbaPresent] CALL_NOSAVE "wh\earplugs\init\wh_ep_settings.sqf";
+[_cbaPresent] CALL_NOSAVE "wha\earplugs\init\wha_ep_settings.sqf";
 
 //	Setting up our toggle key (Default '-').
-[_cbaPresent] CALL_NOSAVE "wh\earplugs\init\wh_ep_toggleKey.sqf";
+[_cbaPresent] CALL_NOSAVE "wha\earplugs\init\wha_ep_toggleKey.sqf";
 
 //	Add basic briefing detailing script features.
 //	If CBA is not present, add a settings menu and import profile settings.
-[_cbaPresent] CALL_NOSAVE "wh\earplugs\init\wh_ep_briefing.sqf";
+[_cbaPresent] CALL_NOSAVE "wha\earplugs\init\wha_ep_briefing.sqf";
 
 
 //------------------------------------------------------------------------------------
@@ -71,13 +71,13 @@ waitUntil{player == player};
 waitUntil {!isNull (findDisplay 46)};
 
 //	Reducing volume if player has set that as default.
-if WH_EP_DEFAULT then { call wh_ep_fnc_insert };
+if WHA_EP_DEFAULT then { call wha_ep_fnc_insert };
 
 //	Updating player eventhandlers for respawning and getting in vehicles.
-call wh_ep_fnc_updateHandlers;
+call wha_ep_fnc_updateHandlers;
 
 //	Script tracing.
-diag_log "[WH-EP] Initialization finished.";
+diag_log "[WHA-EP] Initialization finished.";
 
 
 //------------------------------------------------------------------------------------
@@ -85,4 +85,4 @@ diag_log "[WH-EP] Initialization finished.";
 //------------------------------------------------------------------------------------
 
 //	Add earplug self-interact or addaction.
-if WH_EP_ACTION then { call wh_ep_fnc_updateAction; };
+if WHA_EP_ACTION then { call wha_ep_fnc_updateAction; };

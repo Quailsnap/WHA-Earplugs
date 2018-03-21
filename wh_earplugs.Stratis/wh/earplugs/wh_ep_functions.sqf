@@ -1,8 +1,8 @@
 // ====================================================================================
 //
-//	wh_ep_functions.sqf - Compiles functions for Whale's earpro script.
+//	wha_ep_functions.sqf - Compiles functions for Whale's earpro script.
 //
-//	@ /u/Whalen207 | Whale #5963
+//	Contact: Whale #5963
 //
 // ====================================================================================
 
@@ -22,10 +22,10 @@ params [["_acePresent",false]];
 #define COMPILE_FINAL compileFinal preprocessFileLineNumbers
 
 //	Establishing functions.
-wh_ep_fnc_insert = COMPILE_FINAL "wh\earplugs\functions\wh_ep_insert.sqf";
-wh_ep_fnc_remove = COMPILE_FINAL "wh\earplugs\functions\wh_ep_remove.sqf";
-wh_ep_fnc_updateHandlers = COMPILE_FINAL "wh\earplugs\functions\wh_ep_updateHandlers.sqf";
-wh_ep_fnc_vehicleOfType = COMPILE_FINAL "wh\earplugs\functions\wh_ep_vehicleOfType.sqf";
+wha_ep_fnc_insert = COMPILE_FINAL "wha\earplugs\functions\wha_ep_insert.sqf";
+wha_ep_fnc_remove = COMPILE_FINAL "wha\earplugs\functions\wha_ep_remove.sqf";
+wha_ep_fnc_updateHandlers = COMPILE_FINAL "wha\earplugs\functions\wha_ep_updateHandlers.sqf";
+wha_ep_fnc_vehicleOfType = COMPILE_FINAL "wha\earplugs\functions\wha_ep_vehicleOfType.sqf";
 
 
 //-------------------------------------------------------------------------------------
@@ -38,8 +38,8 @@ wh_ep_fnc_vehicleOfType = COMPILE_FINAL "wh\earplugs\functions\wh_ep_vehicleOfTy
 
 //	Construct hint system based on presence of ACE.
 //	Compilation takes place within the file. TODO : TBD : Don't do this.
-[_acePresent] CALL_NOSAVE "wh\earplugs\functions\wh_ep_compileHint.sqf";
+[_acePresent] CALL_NOSAVE "wha\earplugs\functions\wha_ep_compileHint.sqf";
 
 //	Construct & compile action system based on presence of ACE.
 //	Compilation takes place within the file. TODO : TBD : Don't do this.
-[_acePresent] CALL_NOSAVE "wh\earplugs\functions\wh_ep_compileAction.sqf";
+[_acePresent] CALL_NOSAVE "wha\earplugs\functions\wha_ep_compileAction.sqf";

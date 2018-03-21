@@ -1,8 +1,8 @@
 //====================================================================================
 //
-//	wh_ep_compileHint.sqf - Sets up "put in" and "remove" earplug hints.
+//	wha_ep_compileHint.sqf - Sets up "put in" and "remove" earplug hints.
 //
-//	@ /u/Whalen207 | Whale #5963
+//	Contact: Whale #5963
 //
 //====================================================================================
 
@@ -21,9 +21,9 @@ params [["_acePresent",false]];
 if _acePresent then
 {
 	//	CompileFinal evaluates string code expressions
-	wh_ep_fnc_hint = compileFinal
+	wha_ep_fnc_hint = compileFinal
 	"
-		_hint = if (player getVariable 'WH_EP_EARPLUGS_IN')
+		_hint = if (player getVariable 'WHA_EP_EARPLUGS_IN')
 		then { 'Earplugs inserted.' }
 		else { 'Earplugs removed.' };
 
@@ -39,9 +39,9 @@ if _acePresent then
 else
 {
 	//	CompileFinal evaluates string code expressions
-	wh_ep_fnc_hint = compileFinal
+	wha_ep_fnc_hint = compileFinal
 	"
-		_hint = if (player getVariable 'WH_EP_EARPLUGS_IN')
+		_hint = if (player getVariable 'WHA_EP_EARPLUGS_IN')
 		then { 'Earplugs inserted.' }
 		else { 'Earplugs removed.' };
 

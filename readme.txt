@@ -1,2 +1,2 @@
-Mission above is for use in previewing the (WIP) WH earplugs system.
-A proper readme is available in wh_earplugs.Stratis\wh\earplugs\readme.txt.
+Mission above is for use in previewing the (WIP) WHA earplugs system.
+A proper readme is available in wha_earplugs.Stratis\wha\earplugs\readme.txt.
