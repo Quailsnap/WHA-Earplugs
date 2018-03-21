@@ -34,7 +34,7 @@ WHA_EP_MANUAL = false; // used for purely keeping track of player actions
 //	Get an array of which mods are currently active.
 _modsArray = [] CALL_NOSAVE "wha\earplugs\init\wha_ep_checkMods.sqf";
 
-//	Interperet returned array from checkMods.
+//	Interpret returned array from checkMods.
 _modsArray params [ ["_cbaPresent",false], ["_acePresent",true] ];
 
 //	Allows for missionmaker configuration of important settings.
