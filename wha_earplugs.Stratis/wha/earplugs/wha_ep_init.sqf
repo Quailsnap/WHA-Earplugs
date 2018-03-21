@@ -81,7 +81,7 @@ diag_log "[WHA-EP] Initialization finished.";
 
 
 //------------------------------------------------------------------------------------
-//	Adding nametag actions to player.
+//	Adding earplug actions to player.
 //------------------------------------------------------------------------------------
 
 //	Add earplug self-interact or addaction.
