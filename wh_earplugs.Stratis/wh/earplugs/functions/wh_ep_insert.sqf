@@ -10,7 +10,7 @@
 
 // TODO : TBD = Merge with remove, make a toggle with true / false param?
 
-//	Emergency exit.
+//	Exits if earplugs are already in.
 if (player getVariable 'WH_EP_EARPLUGS_IN') exitWith {};
 
 //	Update global variable.

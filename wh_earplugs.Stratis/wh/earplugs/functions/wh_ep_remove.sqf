@@ -8,7 +8,7 @@
 //
 //====================================================================================
 
-//	Emergency exit.
+//	Exits if earplugs are already out.
 if (!(player getVariable 'WH_EP_EARPLUGS_IN')) exitWith {};
 
 //	Update global variable.

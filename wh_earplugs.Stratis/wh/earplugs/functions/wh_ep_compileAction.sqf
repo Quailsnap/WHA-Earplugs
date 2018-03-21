@@ -7,10 +7,18 @@
 //====================================================================================
 
 //------------------------------------------------------------------------------------
+//	Parameters:
+//	1. _acePresent (BOOL) - Presence of ACE addon in mission. Default: false
+//------------------------------------------------------------------------------------
+
+params [["_acePresent",false]];
+
+
+//------------------------------------------------------------------------------------
 //	If ACE is present, setup the ACE self-interact actions.
 //------------------------------------------------------------------------------------
 
-if WH_EP_MOD_ACE then
+if _acePresent then
 {
 
 //	Action definition for putting in the earplugs.
@@ -18,7 +26,7 @@ WH_EP_ACT_INSERTPLUGS =
 [
 	"earplugs",	// Variable name.
 	"Insert Earplugs",	// Title to be displayed.
-	"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_connect_ca.paa",	// Icon in menus.
+	"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_unbind_ca.paa",	// Icon in menus.
 	{ WH_EP_MANUAL = true; call wh_ep_fnc_insert; },	// Code run upon use.
 	{true}	// Condition required to be useable.
 ] call ace_interact_menu_fnc_createAction;
@@ -29,12 +37,12 @@ WH_EP_ACT_REMOVEPLUGS =
 	"earplugs",	// Variable name.
 	"Remove Earplugs",	// Title to be displayed.
 	"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_connect_ca.paa",	// Icon in menus.
-	// TBD : Replace with another icon.
 	{ WH_EP_MANUAL = false; call wh_ep_fnc_remove; },	// Code run upon use.
 	{true}	// Condition required to be useable.
 ] call ace_interact_menu_fnc_createAction;
 
 //	Save code that will toggle actions.
+//	CompileFinal evaluates string code expressions
 wh_ep_fnc_updateAction = compileFinal
 "
 	if (!(player getVariable 'WH_EP_EARPLUGS_IN')) then
@@ -59,8 +67,8 @@ wh_ep_fnc_updateAction = compileFinal
 
 else
 {
-// TODO : TBD : ui stuff <t color='#C67F7F'>
 //	Save code that will toggle actions.
+//	CompileFinal evaluates string code expressions
 wh_ep_fnc_updateAction = compileFinal
 "
 	if (!(player getVariable 'WH_EP_EARPLUGS_IN')) then
@@ -68,14 +76,14 @@ wh_ep_fnc_updateAction = compileFinal
 		if (!isNil 'WH_EP_ACT') then { player removeAction WH_EP_ACT; };
 		
 		if (WH_EP_EARPLUGS && {WH_EP_ACTION}) then
-		{ WH_EP_ACT = player addAction ['Insert Earplugs',{ WH_EP_MANUAL = true; call wh_ep_fnc_insert; }, [], 0.5, false]; };
+		{ WH_EP_ACT = player addAction [WH_EP_ACTION_IN,{ WH_EP_MANUAL = true; call wh_ep_fnc_insert; }, [], 0.5, false]; };
 	}
 	else
 	{
 		if (!isNil 'WH_EP_ACT') then { player removeAction WH_EP_ACT; };
 		
 		if (WH_EP_ACTION) then
-		{ WH_EP_ACT = player addAction ['Remove Earplugs', { WH_EP_MANUAL = false; call wh_ep_fnc_remove; }, [], 0.5, false]; };
+		{ WH_EP_ACT = player addAction [WH_EP_ACTION_OUT, { WH_EP_MANUAL = false; call wh_ep_fnc_remove; }, [], 0.5, false]; };
 	};
 "
 };

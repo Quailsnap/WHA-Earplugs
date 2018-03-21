@@ -6,9 +6,17 @@
 //
 // ====================================================================================
 
-//---------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------
+//	Parameters:
+//	1. _acePresent (BOOL) - Presence of ACE addon in mission. Default: false
+//-------------------------------------------------------------------------------------
+
+params [["_acePresent",false]];
+
+
+//-------------------------------------------------------------------------------------
 //	Preprocess and compile static functions.
-//---------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------
 
 //	Preprocessor shortcut for compiling a function and permanently saving it.
 #define COMPILE_FINAL compileFinal preprocessFileLineNumbers
@@ -20,16 +28,18 @@ wh_ep_fnc_updateHandlers = COMPILE_FINAL "wh\earplugs\functions\wh_ep_updateHand
 wh_ep_fnc_vehicleOfType = COMPILE_FINAL "wh\earplugs\functions\wh_ep_vehicleOfType.sqf";
 
 
-//---------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------
 //	Preprocess and compile functions that vary depending on mod presence.
-//---------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------
 
 //	Preprocessor shortcut for compiling and running code once without saving.
 //	Used because all the compiling is done within the files below.
 #define CALL_NOSAVE call compile preprocessFileLineNumbers
 
-//	Construct & compile hint system based on presence of ACE.
-CALL_NOSAVE "wh\earplugs\functions\wh_ep_compileHint.sqf";
+//	Construct hint system based on presence of ACE.
+//	Compilation takes place within the file. TODO : TBD : Don't do this.
+[_acePresent] CALL_NOSAVE "wh\earplugs\functions\wh_ep_compileHint.sqf";
 
 //	Construct & compile action system based on presence of ACE.
-CALL_NOSAVE "wh\earplugs\functions\wh_ep_compileAction.sqf";
+//	Compilation takes place within the file. TODO : TBD : Don't do this.
+[_acePresent] CALL_NOSAVE "wh\earplugs\functions\wh_ep_compileAction.sqf";

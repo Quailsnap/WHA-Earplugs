@@ -8,30 +8,36 @@
 //====================================================================================
 
 //------------------------------------------------------------------------------------
+//	Parameters:
+//	1. _cbaPresent (BOOL) - Presence of CBA addon in mission. Default: false
+//------------------------------------------------------------------------------------
+
+params [["_cbaPresent",false]];
+
+
+//------------------------------------------------------------------------------------
 //	If CBA is not present, get saved settings from player profile.
 //------------------------------------------------------------------------------------
 
-if !WH_EP_MOD_CBA then
+if !_cbaPresent then
 {
+	//	Var for whether earpro should be in by default.
+	WH_EP_DEFAULT = profileNamespace getVariable ["WH_EP_DEFAULT",WH_EP_DEFAULT];
 
-	if (!isNil {profileNamespace getVariable "WH_EP_DEFAULT"}) then 
-	{	WH_EP_DEFAULT = profileNamespace getVariable "WH_EP_DEFAULT";	};
-
-	if (!isNil {profileNamespace getVariable "WH_EP_ACTION"}) then 
-	{	WH_EP_ACTION = profileNamespace getVariable "WH_EP_ACTION";	};
+	//	Var for whether earpro action should be shown.
+	WH_EP_ACTION = profileNamespace getVariable ["WH_EP_ACTION",WH_EP_ACTION];
 	
-	if (!isNil {profileNamespace getVariable "WH_EP_SOUNDLEVEL"}) then 
-	{	WH_EP_SOUNDLEVEL = profileNamespace getVariable "WH_EP_SOUNDLEVEL";	};
+	//	Var for amount of sound reduction having earpro in gives.
+	WH_EP_SOUNDLEVEL = profileNamespace getVariable ["WH_EP_SOUNDLEVEL",WH_EP_SOUNDLEVEL];
 	
-	if (!isNil {profileNamespace getVariable "WH_EP_AUTO"}) then 
-	{	WH_EP_AUTO = profileNamespace getVariable "WH_EP_AUTO";	};
+	//	Var for whether earpro should be automatically put in upon entering vehicles.
+	WH_EP_AUTO = profileNamespace getVariable ["WH_EP_AUTO",WH_EP_AUTO];
 	
-	if (!isNil {profileNamespace getVariable "WH_EP_AUTO_VEHICLES"}) then 
-	{	WH_EP_AUTO_VEHICLES = profileNamespace getVariable "WH_EP_AUTO_VEHICLES";	};
+	//	Var for which vehicles earpro should be automatically put in for.
+	WH_EP_AUTO_VEHICLES = profileNamespace getVariable ["WH_EP_AUTO_VEHICLES",WH_EP_AUTO_VEHICLES];
 	
-	if (!isNil {profileNamespace getVariable "WH_EP_TOGGLE"}) then 
-	{	WH_EP_TOGGLE = profileNamespace getVariable "WH_EP_TOGGLE";	};
-
+	//	Var for whether there should be a toggleKey (default "-") for earpro.
+	WH_EP_TOGGLE = profileNamespace getVariable ["WH_EP_TOGGLE",WH_EP_TOGGLE];
 }
 
 
@@ -85,7 +91,19 @@ else
 		"WH Earplugs", 				// Category shown in menu.
 		WH_EP_ACTION, 		// Setting type-specific data.
 		nil, 						// Nil or 0 for changeable, 1 to reset to default, 2 to lock.
-		{ if WH_EP_ACTION then {call wh_ep_fnc_updateAction;}; }
+		{
+			if WH_EP_ACTION then { call wh_ep_fnc_updateAction; }
+			else
+			//	Attempt to remove action
+			{
+				// TODO : TBD : Functions for removing action, maybe make addon detection global again?
+				// Detect if ACE action
+				if (isClass (configFile >> "CfgPatches" >> "ace_common"))
+				then { [player, 1,['ACE_SelfActions','ACE_Equipment','earplugs']] call ace_interact_menu_fnc_removeActionFromObject; }
+				// If not, vanilla removal
+				else { if (!isNil 'WH_EP_ACT') then { player removeAction WH_EP_ACT; }; };
+			};
+		}
 	] call CBA_Settings_fnc_init;
 	
 	//	Setting to dynamically alter sound level.

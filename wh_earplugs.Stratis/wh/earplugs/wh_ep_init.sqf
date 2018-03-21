@@ -31,28 +31,32 @@ WH_EP_MANUAL = false; // used for purely keeping track of player actions
 //	Configuration, functions, settings import, and additional setup.
 //------------------------------------------------------------------------------------
 
-//	Determine which mods are active.
-CALL_NOSAVE "wh\earplugs\init\wh_ep_checkMods.sqf";
+//	Get an array of which mods are currently active.
+_modsArray = [] CALL_NOSAVE "wh\earplugs\init\wh_ep_checkMods.sqf";
+
+//	Interperet returned array from checkMods.
+_modsArray params [ ["_cbaPresent",false], ["_acePresent",true] ];
 
 //	Allows for missionmaker configuration of important settings.
 CALL_NOSAVE "wh\earplugs\wh_ep_CONFIG.sqf";
 
-//	Construct & compile functions.
-CALL_NOSAVE "wh\earplugs\wh_ep_functions.sqf";
-
-//	Imports settings if CBA is not present,
-//	sets up an options menu if it is.
-CALL_NOSAVE "wh\earplugs\init\wh_ep_settings.sqf";
-
 //	Emergency exit if the earplug system is disabled.
 if (!WH_EP_EARPLUGS) exitWith {};
 
+//	Construct & compile functions.
+//	Uses local variables collected earlier to determine which functions to use.
+[_acePresent] CALL_NOSAVE "wh\earplugs\wh_ep_functions.sqf";
+
+//	Imports settings if CBA is not present,
+//	sets up an options menu if it is.
+[_cbaPresent] CALL_NOSAVE "wh\earplugs\init\wh_ep_settings.sqf";
+
 //	Setting up our toggle key (Default '-').
-CALL_NOSAVE "wh\earplugs\init\wh_ep_toggleKey.sqf";
+[_cbaPresent] CALL_NOSAVE "wh\earplugs\init\wh_ep_toggleKey.sqf";
 
 //	Add basic briefing detailing script features.
 //	If CBA is not present, add a settings menu and import profile settings.
-CALL_NOSAVE "wh\earplugs\init\wh_ep_briefing.sqf";
+[_cbaPresent] CALL_NOSAVE "wh\earplugs\init\wh_ep_briefing.sqf";
 
 
 //------------------------------------------------------------------------------------

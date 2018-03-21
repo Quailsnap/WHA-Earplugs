@@ -7,6 +7,14 @@
 //====================================================================================
 
 //------------------------------------------------------------------------------------
+//	Parameters:
+//	1. _cbaPresent (BOOL) - Presence of CBA addon in mission. Default: false
+//------------------------------------------------------------------------------------
+
+params [["_cbaPresent",false]];
+
+
+//------------------------------------------------------------------------------------
 //	Construct a briefing depending on present settings.
 //------------------------------------------------------------------------------------
 
@@ -22,7 +30,7 @@ WH earplugs are enabled in this mission.<br/>Currently they are, by default, %1.
 //	Only add the part mentioning the toggle key if a toggle key exists.
 if WH_EP_TOGGLE then
 { 
-	if !WH_EP_MOD_CBA then
+	if !_cbaPresent then
 	{
 		_briefingString = _briefingString + 
 		format["You can toggle the earplugs in and out with %1.<br/>",WH_EP_TOGGLE_NAME];
@@ -46,7 +54,7 @@ if WH_EP_AUTO then
 };
 
 //	If CBA is present, mention the addons option menu.
-if WH_EP_MOD_CBA then
+if _cbaPresent then
 {
 	_briefingString = _briefingString + 
 	"A menu with configurable options for each player is available under ESC > OPTIONS > ADDON OPTIONS > WH EARPLUGS.<br/>";
@@ -55,13 +63,8 @@ if WH_EP_MOD_CBA then
 else
 {
 	_briefingString = _briefingString + 
-	"A menu with configurable options for each player is available beneath this briefing.<br/>
-	For additional customization, use the Community Base Addons mod.<br/>
-	Note: Enabling or disabling the toggle key has no effect until you restart your game, the mission, or rejoin the server.<br/>";
+	"A menu with configurable options for each player is available beneath this briefing.<br/>For additional customization, use the Community Base Addons mod.<br/>";
 };
-
-_briefingString = _briefingString +
-"Note: After disabling the addAction / interact action, use it twice to make it disappear from your screen until re-enabled.<br/><br/>";
 
 
 //------------------------------------------------------------------------------------
@@ -70,7 +73,7 @@ _briefingString = _briefingString +
 
 //	Check CBA presence.
 
-if !WH_EP_MOD_CBA then
+if !_cbaPresent then
 {
 	//--------------------------------------------------------------------------------
 	//	Add briefing settings menu.
@@ -87,16 +90,16 @@ if !WH_EP_MOD_CBA then
 	( Default: NO )
 	<br/>Will your earplugs be in at mission start and upon respawn?<br/><br/>";
 	
-	_briefingString = _briefingString + "EARPLUG ACTION:   ( <execute expression=""hintsilent 'Earplugs action will be shown.';WH_EP_ACTION=true;profileNamespace setVariable ['WH_EP_ACTION',true];saveProfileNamespace;call wh_ep_fnc_updateAction;"">SHOW</execute> / <execute expression=""hintsilent 'Earplug action will be hidden after inserting and removing.';WH_EP_ACTION=false;profileNamespace setVariable ['WH_EP_ACTION',false];saveProfileNamespace;"">HIDE</execute> ) 
+	_briefingString = _briefingString + "EARPLUG ACTION:   ( <execute expression=""hintsilent 'Earplugs action will be shown.';WH_EP_ACTION=true;profileNamespace setVariable ['WH_EP_ACTION',true];saveProfileNamespace;call wh_ep_fnc_updateAction;"">SHOW</execute> / <execute expression=""hintsilent 'Earplug action will be hidden.';WH_EP_ACTION=false;profileNamespace setVariable ['WH_EP_ACTION',false];saveProfileNamespace;if (!isNil 'WH_EP_ACT') then { player removeAction WH_EP_ACT; };"">HIDE</execute> ) 
 	( Default: SHOW )
 	<br/>Should we give you an menu action to toggle your earplugs at will?<br/><br/>";
 	
 	_briefingString = _briefingString + "SOUND LEVEL:   ( 
-	<execute expression=""hintsilent 'Sound level will be 20% when plugs are in.';WH_EP_SOUNDLEVEL=0.2;profileNamespace setVariable ['WH_EP_SOUNDLEVEL',0.2];saveProfileNamespace;"">20%</execute> / 
-	<execute expression=""hintsilent 'Sound level will be 40% when plugs are in.';WH_EP_SOUNDLEVEL=0.4;profileNamespace setVariable ['WH_EP_SOUNDLEVEL',0.4];saveProfileNamespace;"">40%</execute> / 
-	<execute expression=""hintsilent 'Sound level will be 50% when plugs are in.';WH_EP_SOUNDLEVEL=0.5;profileNamespace setVariable ['WH_EP_SOUNDLEVEL',0.5];saveProfileNamespace;"">50%</execute> / 
-	<execute expression=""hintsilent 'Sound level will be 60% when plugs are in.';WH_EP_SOUNDLEVEL=0.6;profileNamespace setVariable ['WH_EP_SOUNDLEVEL',0.6];saveProfileNamespace;"">60%</execute> / 
-	<execute expression=""hintsilent 'Sound level will be 80% when plugs are in.';WH_EP_SOUNDLEVEL=0.8;profileNamespace setVariable ['WH_EP_SOUNDLEVEL',0.8];saveProfileNamespace;"">80%</execute> ) 
+	<execute expression=""hintsilent 'Sound level will be 20% when plugs are in. You must put in the plugs again for this to take effect.';WH_EP_SOUNDLEVEL=0.2;profileNamespace setVariable ['WH_EP_SOUNDLEVEL',0.2];saveProfileNamespace;"">20%</execute> / 
+	<execute expression=""hintsilent 'Sound level will be 40% when plugs are in. You must put in the plugs again for this to take effect.';WH_EP_SOUNDLEVEL=0.4;profileNamespace setVariable ['WH_EP_SOUNDLEVEL',0.4];saveProfileNamespace;"">40%</execute> / 
+	<execute expression=""hintsilent 'Sound level will be 50% when plugs are in. You must put in the plugs again for this to take effect.';WH_EP_SOUNDLEVEL=0.5;profileNamespace setVariable ['WH_EP_SOUNDLEVEL',0.5];saveProfileNamespace;"">50%</execute> / 
+	<execute expression=""hintsilent 'Sound level will be 60% when plugs are in. You must put in the plugs again for this to take effect.';WH_EP_SOUNDLEVEL=0.6;profileNamespace setVariable ['WH_EP_SOUNDLEVEL',0.6];saveProfileNamespace;"">60%</execute> / 
+	<execute expression=""hintsilent 'Sound level will be 80% when plugs are in. You must put in the plugs again for this to take effect.';WH_EP_SOUNDLEVEL=0.8;profileNamespace setVariable ['WH_EP_SOUNDLEVEL',0.8];saveProfileNamespace;"">80%</execute> ) 
 	( Default: 50% )
 	<br/>What percentage of the original should the dampened sound be?<br/><br/>";
 	
@@ -113,10 +116,11 @@ if !WH_EP_MOD_CBA then
 	Do you want plugs automatically put in when entering vehicles?<br/>
 	Also, which vehicles do you want to automatically use plugs?<br/><br/>";
 	
-	_briefingString = _briefingString + "TOGGLE KEY:   ( <execute expression=""hintsilent format['Earplugs can be toggled in and out with your %1 key. This will require a mission restart to take effect.',WH_EP_TOGGLE_NAME];WH_EP_TOGGLE=true;profileNamespace setVariable ['WH_EP_TOGGLE',true];saveProfileNamespace;"">YES</execute> / <execute expression=""hintsilent format['The %1 key will not be used for earplugs. This will require a mission restart to take effect.',WH_EP_TOGGLE_NAME];WH_EP_TOGGLE=false;profileNamespace setVariable ['WH_EP_TOGGLE',false];saveProfileNamespace;"">NO</execute> ) 
-	( Default: YES )" +
+	_briefingString = _briefingString + "TOGGLE KEY:   ( <execute expression=""hintsilent format['Earplugs can be toggled in and out with your %1 key.',WH_EP_TOGGLE_NAME];WH_EP_TOGGLE=true;[false] call compile preprocessFileLineNumbers 'wh\earplugs\init\wh_ep_toggleKey.sqf';profileNamespace setVariable ['WH_EP_TOGGLE',true];saveProfileNamespace;"">YES</execute> / <execute expression=""hintsilent format['The %1 key will not be used for earplugs.',WH_EP_TOGGLE_NAME];WH_EP_TOGGLE=false;call compile preprocessFileLineNumbers 'wh\earplugs\init\wh_ep_toggleKeyDestroy.sqf';profileNamespace setVariable ['WH_EP_TOGGLE',false];saveProfileNamespace;"">NO</execute> ) 
+	( Default: NO )" +
 	format['<br/>Do you want the %1 key to be used to quickly put in or remove earplugs?<br/><br/>',WH_EP_TOGGLE_NAME];
 };
+
 
 //------------------------------------------------------------------------------------
 //	Add a debug menu regardless of CBA presence. ( TBD : TODO )

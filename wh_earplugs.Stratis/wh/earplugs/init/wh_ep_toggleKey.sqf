@@ -8,21 +8,32 @@
 //====================================================================================
 
 //------------------------------------------------------------------------------------
+//	Parameters:
+//	1. _cbaPresent (BOOL) - Presence of CBA addon in mission. Default: false
+//------------------------------------------------------------------------------------
+
+params [["_cbaPresent",false]];
+
+
+//------------------------------------------------------------------------------------
 //	If CBA is NOT present: Setup the Toggle Key, default '-'.
 //------------------------------------------------------------------------------------
 
-if !WH_EP_MOD_CBA then
+if !_cbaPresent then
 {
 
 //	Setup toggleKey names.
-WH_EP_TOGGLE_ID = (actionKeys WH_EP_TOGGLE_KEY) select 0;// This key, a global variable.
-WH_EP_TOGGLE_NAME = actionKeysNames WH_EP_TOGGLE_KEY;	// Which is named this...
+WH_EP_TOGGLE_ID = (actionKeys WH_EP_TOGGLE_KEY) select 0; // This key, a global variable.
+WH_EP_TOGGLE_NAME = actionKeysNames WH_EP_TOGGLE_KEY; // Which is named this...
 
 //	Stop here (do not setup key handlers) if the system is disabled.
 if (!WH_EP_TOGGLE) exitWith {};
 
+//	If the key is already established, exit.
+if (uiNamespace getVariable ["WH_EP_EH_KEYDOWN",-1] > -1) exitWith {};
+
 //	Function that will determine when the disableKey is depressed.
-WH_EP_KEYDOWN = 
+_keydownCode = 
 {
 	_key = _this select 1;
 	_handled = false;
@@ -38,20 +49,21 @@ WH_EP_KEYDOWN =
 };
 
 //	Function that will determine when the disableKey is released.
-WH_EP_KEYUP = 
+_keyupCode = 
 {
 	_key = _this select 1;
 	_handled = false;
 	if(_key == WH_EP_TOGGLE_ID) then
-	{
-		_handled = true;
-	};
+	{ _handled = true; };
 	_handled;
 };
 
 //	Add eventhandlers (functions above).
-(findDisplay 46) displayAddEventHandler   ["keydown", "_this call WH_EP_KEYDOWN"];
-(findDisplay 46) displayAddEventHandler   ["keyup", "_this call WH_EP_KEYUP"];
+_eh_keydown = (findDisplay 46) displayAddEventHandler ["keydown", _keydownCode];
+_eh_keyup = (findDisplay 46) displayAddEventHandler ["keyup", _keyupCode];
+
+uiNamespace setVariable ["WH_EP_EH_KEYDOWN",_eh_keydown];
+uiNamespace setVariable ["WH_EP_EH_KEYUP",_eh_keyup];
 
 }
 
