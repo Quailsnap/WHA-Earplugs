@@ -1,38 +1,39 @@
 ==========================================================================================
 
-	WHALE'S EARPLUGS (V0.3.2 Beta) 
+	WHALE'S EARPLUGS (V0.3.3 Beta) 
 	SCRIPT FOR ARMA 3
 	
-	( https://github.com/Whalen207/WHA-EP )
-	Contact Contact: Whale #5963
+	( https://github.com/Quailsnap/WHA-Earplugs )
+	Contact: Whale#5963
 
 	Features:
-	-	Plugs reduce in-game effect volume without touching music or Teamspeak.
-	-	Toggled in and out with an addAction that can be disabled.
+	-	Plugs reduce in-game effect volume without touching Teamspeak.
+	-	They can be toggled in and out with an addAction that can be disabled.
 	-	May also be used with a keybind (default "-") that can be disabled.
 	-	By default will automatically be put in when entering vehicles.
-	-	Users can select which types of vehicles automatically trigger earplugs.
+	-	Users can select which types of vehicles automatically trigger earplugs, if any.
 	-	Configurable levels of sound protection.
 	-	Optionally present at mission start / upon respawn.
 	-	Full settings menu in briefing screen, or CBA addon options if CBA is present.
 	
 	Mod Compatibility:
-	-	This script is not compatible with ACE hearing.
-	-	If ACE is present, the normal menu addAction will be replaced with a self-interact
+	-	This script is not compatible with ACE Hearing.
+	-	If ACE Core is present, the normal menu addAction will be replaced with a self-interact
 		option found under self-interact > equipment.
-	-	If CBA is present, the settings menu in briefing will be replaced with a menu
-		under ESC > Options > Addon Options > WHA Earplugs,the toggle key bind previously 
+	-	If CBA is present: the settings menu in briefing will be replaced with a menu
+		under ESC > Options > Addon Options > WHA Earplugs; the toggle key bind previously 
 		only configurable by the missionmaker (default "-") can now be changed by users
-		in ESC > Options > Controls > Configure Addons > WHA Earplugs, and an additional
+		in ESC > Options > Controls > Configure Addons > WHA Earplugs; and an additional
 		"Hold to Deafen" button can be utilized.
 	
 	Frequently Asked Questions:
 	-	"How do I use this script?"
 		Add it to a mission using the instructions below.
 	-	"Will there ever be an addon version that will automatically run in every mission?"
-		Most likely, once I'm done with my Nametag and Unit Marker scripts.
+		There is an alpha version available at:
+		https://github.com/Quailsnap/WHA-Earplugs-Addon
 	-	"Does this script affect in-game voice communication?"
-		It does affect the direct channel. I'm looking for ways to avoid this.
+		It does affect the direct channel, but not others (group, side, etc). I'm looking for ways to avoid this.
 	
 	Planned Features:
 	-	???
